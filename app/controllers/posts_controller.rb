@@ -12,11 +12,11 @@ class PostsController < ApplicationController
     end
     
     def edit 
-    
+        @post = Post.find(params[:id])
     end
 
     def create
-        @post = Post.new(title: params[:post][:title], content: params[:post][:content])
+        @post = Post.new(title: params[:post][:title], body: params[:post][:body])
 
         if @post.save
             flash[:notice] = "Post saved"
@@ -28,7 +28,11 @@ class PostsController < ApplicationController
     end
 
     def update
+        @post = Post.find(params[:id])
 
+        if @post.update(title: params[:post][:title], body: params[:post][:title])
+
+        end
     end
 
     def destroy
